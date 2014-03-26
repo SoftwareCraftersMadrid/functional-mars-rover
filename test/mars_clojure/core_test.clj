@@ -8,4 +8,7 @@
 
   (testing "When Rover moves forward twice facing north it advances two squares"
     (is (= {:x 2} (move-rover {:x 0} "ff"))))
+
+  (testing "moves backwards also"
+    (is (= {:x 0} (move-rover {:x 1} "b"))))
   )

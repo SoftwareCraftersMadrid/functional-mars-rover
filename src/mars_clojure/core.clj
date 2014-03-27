@@ -1,19 +1,22 @@
 (ns mars-clojure.core)
 
-(def inital-rover {:y 0} )
 
-(defn- execute-command
+(defmulti execute-command (fn [rover _] (:facing rover)))
+
+(defmethod execute-command :north
   [rover command]
   (case command
-    'f' (assoc rover :y (inc (:y rover)))
-    'b' (assoc rover :y (dec (:y rover)))
+    \f (assoc rover :y (inc (:y rover)))
+    \b (assoc rover :y (dec (:y rover)))
+    \r (assoc rover :facing :east)
+    \l (assoc rover :facing :west)
     )
   )
 
 (defn move-rover
   [rover commands]
   (reduce (fn
-            [rover command]
-            (execute-command rover)) commands)
+            [partial-rover command]
+            (execute-command partial-rover command)) rover commands)
 
   )

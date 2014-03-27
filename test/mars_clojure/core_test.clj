@@ -16,5 +16,10 @@
   (testing "rotation"
     (is (= :east (:facing (move-rover inital-rover "r"))))
     (is (= :west (:facing (move-rover inital-rover "l"))))
+    (is (= :south (:facing (move-rover inital-rover "rr"))))
   )
+
+  (testing "movement facing east"
+    (is (= 1 (:x (move-rover inital-rover "rf")))))
+
 )

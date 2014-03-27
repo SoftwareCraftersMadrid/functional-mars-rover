@@ -33,6 +33,16 @@
     )
   )
 
+(defmethod execute-command :south
+  [rover command]
+  (case command
+    \f (assoc rover :y (dec (:y rover)))
+    \b (assoc rover :y (inc (:y rover)))
+    \r (assoc rover :facing :west)
+    \l (assoc rover :facing :east)
+    )
+  )
+
 (defn move-rover
   [rover commands]
   (reduce (fn

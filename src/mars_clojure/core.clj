@@ -23,6 +23,15 @@
     )
   )
 
+(defmethod execute-command :west
+  [rover command]
+  (case command
+    \f (assoc rover :x (dec (:x rover)))
+    \b (assoc rover :x (inc (:x rover)))
+    \r (assoc rover :facing :north)
+    \l (assoc rover :facing :south)
+    )
+  )
 
 (defn move-rover
   [rover commands]

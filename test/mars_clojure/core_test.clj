@@ -17,9 +17,13 @@
     (is (= :east (:facing (move-rover inital-rover "r"))))
     (is (= :west (:facing (move-rover inital-rover "l"))))
     (is (= :south (:facing (move-rover inital-rover "rr"))))
+    (is (= :south (:facing (move-rover inital-rover "ll"))))
   )
 
   (testing "movement facing east"
     (is (= 1 (:x (move-rover inital-rover "rf")))))
+
+  (testing "movement facing west"
+    (is (= -1 (:x (move-rover inital-rover "lf")))))
 
 )

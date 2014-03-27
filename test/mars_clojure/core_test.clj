@@ -6,16 +6,14 @@
 
 
 (deftest rover-movement
-  (testing "When Rover moves forward facing north it advances one square"
+  (testing "moving forward"
     (is (= 1 (:y (move-rover inital-rover "f")))))
+    (is (= 2 (:y (move-rover inital-rover "ff"))))
 
-  (testing "When Rover moves forward twice facing north it advances two squares"
-    (is (= 2 (:y (move-rover inital-rover "ff")))))
-
-  (testing "moves backwards also"
+  (testing "moving backwards"
     (is (= 0 (:y (move-rover {:x 0 :y 1 :facing :north} "b")))))
 
-  (testing "rotates right"
+  (testing "rotation"
     (is (= :east (:facing (move-rover inital-rover "r"))))
     (is (= :west (:facing (move-rover inital-rover "l"))))
   )

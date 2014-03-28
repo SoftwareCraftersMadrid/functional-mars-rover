@@ -1,5 +1,6 @@
 (ns mars-clojure.core)
 
+(def inital-rover {:x 0 :y 0 :facing :north} )
 
 (defmulti execute-command (fn [rover _] (:facing rover)))
 

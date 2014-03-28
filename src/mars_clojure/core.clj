@@ -8,13 +8,28 @@
     101 0
     position))
 
+(defn- move
+  [rover axis movement-function]
+  (assoc rover axis (warp-if-needed (movement-function (axis rover))))
+  )
+
+(defn- increment
+  [rover axis]
+  (move rover axis inc)
+  )
+
+(defn- decrement
+  [rover axis]
+  (move rover axis dec)
+  )
+
 (defmulti execute-command (fn [rover _] (:facing rover)))
 
 (defmethod execute-command :north
   [rover command]
   (case command
-    \f (assoc rover :y (warp-if-needed (inc (:y rover))))
-    \b (assoc rover :y (warp-if-needed (dec (:y rover))))
+    \f (increment rover :y)
+    \b (decrement rover :y)
     \r (assoc rover :facing :east)
     \l (assoc rover :facing :west)
     )
@@ -23,8 +38,8 @@
 (defmethod execute-command :east
   [rover command]
   (case command
-    \f (assoc rover :x (warp-if-needed (inc (:x rover))))
-    \b (assoc rover :x (warp-if-needed (dec (:x rover))))
+    \f (increment rover :x)
+    \b (decrement rover :x)
     \r (assoc rover :facing :south)
     \l (assoc rover :facing :north)
     )
@@ -33,8 +48,8 @@
 (defmethod execute-command :west
   [rover command]
   (case command
-    \f (assoc rover :x (warp-if-needed (dec (:x rover))))
-    \b (assoc rover :x (warp-if-needed (inc (:x rover))))
+    \f (decrement rover :x)
+    \b (increment rover :x)
     \r (assoc rover :facing :north)
     \l (assoc rover :facing :south)
     )
@@ -43,8 +58,8 @@
 (defmethod execute-command :south
   [rover command]
   (case command
-    \f (assoc rover :y (warp-if-needed (dec (:y rover))))
-    \b (assoc rover :y (warp-if-needed (inc (:y rover))))
+    \f (decrement rover :y)
+    \b (increment rover :y)
     \r (assoc rover :facing :west)
     \l (assoc rover :facing :east)
     )

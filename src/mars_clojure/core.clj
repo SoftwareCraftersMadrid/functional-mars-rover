@@ -10,8 +10,10 @@
 
 (defn- move
   [rover axis movement-function]
-  (assoc rover axis (warp-if-needed (movement-function (axis rover))))
-  )
+  (assoc rover axis (->> (axis rover)
+                         movement-function
+                         warp-if-needed)
+    ))
 
 (defn- increment
   [rover axis]

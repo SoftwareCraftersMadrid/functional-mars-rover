@@ -1,3 +1,7 @@
+# A solution in Clojure
+
+I made this solution to show that some languages make working with this functional style really easy. One popular example is clojure.
+
 A functional Mars Rover Kata
 ============================
 
@@ -23,7 +27,6 @@ Just in case you don't remember/know the rules for Mars Rover Kata.
  - Implement wrapping from one edge of the grid to another. (planets are spheres after all)
  - Implement obstacle detection before each move to a new square. If a given sequence of commands encounters an obstacle, the rover moves up to the last possible point and reports the obstacle.
 
-Examples: 
+Examples:
 
  - The rover is on a 100x100 grid at location (0, 0) and facing NORTH. The rover is given the commands "ffrff" and should end up at (2, 2)
-
